@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Vinayak S. Hosamani - Portfolio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts for Premium Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(245, 158, 11, 0.5); border-radius: 20px; }
+        
+        /* Scroll animations setup */
+        .fade-in-section {
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            opacity: 0;
+            transform: translateY(2.5rem);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* Adjust anchor links for fixed header */
+        section { scroll-margin-top: 5rem; }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans transition-colors duration-300 selection:bg-amber-500/30">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex-shrink-0 cursor-pointer">
+                    <span class="font-serif font-bold text-xl md:text-2xl tracking-tight text-slate-900 dark:text-white">
+                        Dr. Vinayak <span class="text-amber-500">Hosamani</span>
+                    </span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors">About</a>
+                    <a href="#experience" class="text-sm font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors">Experience</a>
+                    <a href="#impact" class="text-sm font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors">Impact</a>
+                    <a href="#research" class="text-sm font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors">Research</a>
+                    <a href="#gallery" class="text-sm font-medium hover:text-amber-500 dark:hover:text-amber-400 transition-colors">Gallery</a>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
+                        <i class="ph ph-moon text-lg dark:hidden"></i>
+                        <i class="ph ph-sun text-lg text-amber-400 hidden dark:block"></i>
+                    </button>
+                    
+                    <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-amber-500/20">
+                        Let's Connect
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Buttons -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <button id="theme-toggle-mobile" class="p-2">
+                        <i class="ph ph-moon text-xl dark:hidden"></i>
+                        <i class="ph ph-sun text-xl text-amber-400 hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 text-slate-900 dark:text-white">
+                        <i class="ph ph-list text-2xl" id="menu-icon-open"></i>
+                        <i class="ph ph-x text-2xl hidden" id="menu-icon-close"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-4 space-y-1 shadow-xl">
+            <a href="#about" class="block w-full text-left px-3 py-3 text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">About</a>
+            <a href="#experience" class="block w-full text-left px-3 py-3 text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">Experience</a>
+            <a href="#impact" class="block w-full text-left px-3 py-3 text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">Impact</a>
+            <a href="#research" class="block w-full text-left px-3 py-3 text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">Research</a>
+            <a href="#gallery" class="block w-full text-left px-3 py-3 text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">Gallery</a>
+            <a href="#contact" class="block w-full text-left px-3 py-3 text-base font-medium text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg mobile-link">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-[90vh]">
+        <!-- Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-500/10 dark:bg-blue-600/20 blur-[100px]"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-amber-500/10 dark:bg-amber-500/20 blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <div class="fade-in-section space-y-8 text-center lg:text-left" style="transition-delay: 0ms">
+                    <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 font-medium text-sm border border-amber-200 dark:border-amber-500/20 mb-4">
+                        <i class="ph ph-globe"></i>
+                        <span>Global Academic & Industry Leader</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-7xl font-serif font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                        Dr. Vinayak <br />
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-300">
+                            S. Hosamani
+                        </span>
+                    </h1>
+                    
+                    <p class="text-xl lg:text-2xl font-medium text-slate-600 dark:text-slate-300">
+                        Professor, Director & Entrepreneurial Leader
+                    </p>
+                    
+                    <p class="text-lg text-slate-500 dark:text-slate-400 max-w-xl mx-auto lg:mx-0">
+                        Driving Innovation, Entrepreneurship & Academic Excellence
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                        <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:scale-105 transition-transform shadow-xl text-center">
+                            View Profile
+                        </a>
+                        <a href="https://wa.me/919916911656" target="_blank" rel="noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-semibold border border-slate-200 dark:border-slate-700 hover:border-amber-500 dark:hover:border-amber-500 transition-colors flex items-center justify-center space-x-2">
+                            <i class="ph ph-phone text-lg"></i>
+                            <span>Contact Me</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dr-vinayak-hosamani-56242337/" target="_blank" rel="noreferrer" class="w-14 h-14 shrink-0 rounded-full bg-[#0077b5]/10 text-[#0077b5] dark:bg-white/10 dark:text-white flex items-center justify-center hover:bg-[#0077b5] hover:text-white dark:hover:bg-[#0077b5] transition-all shadow-sm">
+                            <i class="ph ph-linkedin-logo text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="fade-in-section relative mx-auto w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[32rem] lg:h-[32rem]" style="transition-delay: 200ms">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-blue-600 rounded-full blur-2xl opacity-20 dark:opacity-40 animate-pulse"></div>
+                    <div class="relative h-full w-full rounded-full border-4 border-white dark:border-slate-800 shadow-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                        <img src="WhatsApp Image 2026-03-18 at 10.04.32 AM (3).jpeg" alt="Dr. Vinayak S. Hosamani" class="object-cover w-full h-full" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+                    </div>
+                    
+                    <!-- Floating Badges -->
+                    <div class="absolute -right-2 md:-right-4 top-10 md:top-20 bg-white dark:bg-slate-800 p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 animate-bounce scale-90 md:scale-100" style="animation-duration: 3s">
+                        <div class="flex items-center space-x-2 md:space-x-3">
+                            <div class="bg-amber-100 dark:bg-amber-900/30 p-1.5 md:p-2 rounded-full text-amber-600 dark:text-amber-400">
+                                <i class="ph ph-trend-up text-xl md:text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400">Funding Enabled</p>
+                                <p class="text-sm md:text-base font-bold text-slate-900 dark:text-white">₹11.94 Cr+</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -left-4 md:-left-8 bottom-10 md:bottom-20 bg-white dark:bg-slate-800 p-3 md:p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 animate-bounce scale-90 md:scale-100" style="animation-duration: 4s">
+                        <div class="flex items-center space-x-2 md:space-x-3">
+                            <div class="bg-blue-100 dark:bg-blue-900/30 p-1.5 md:p-2 rounded-full text-blue-600 dark:text-blue-400">
+                                <i class="ph ph-medal text-xl md:text-2xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400">Global Award</p>
+                                <p class="text-sm md:text-base font-bold text-slate-900 dark:text-white">Teacher 2018</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 bg-white dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">Professional Summary</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Bridging the gap between academia, industry, and entrepreneurial ecosystems.</p>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-12 mt-12 items-center">
+                <div class="fade-in-section prose prose-lg dark:prose-invert">
+                    <p class="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
+                        Visionary academic and entrepreneurial leader dedicated to driving innovation, institutional growth, and corporate excellence. Leveraging extensive experience in administrative leadership, marketing, and training to build sustainable ecosystems that empower individuals and organizations to achieve transformative success on a global scale.
+                    </p>
+                    <div class="mt-8 p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-inner">
+                        <h3 class="text-xl font-serif font-bold text-slate-900 dark:text-white mb-4 flex items-center">
+                            <i class="ph ph-target mr-2 text-amber-500"></i> Core Competencies
+                        </h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Strategic Leadership & Vision</span>
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Ecosystem Building</span>
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Excellent Communication</span>
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Team Management & Mentoring</span>
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Project Management</span>
+                            <span class="px-4 py-2 rounded-full bg-white dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300 shadow-sm border border-slate-200 dark:border-slate-700">Thrives Under Pressure</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in-section grid grid-cols-1 sm:grid-cols-2 gap-6" style="transition-delay: 200ms">
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform">
+                        <i class="ph ph-graduation-cap text-amber-500 text-4xl mb-4 block"></i>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">Ph.D</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Rani Channamma University</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform">
+                        <i class="ph ph-graduation-cap text-amber-500 text-4xl mb-4 block"></i>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">MBA</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Visvesvaraya Technological University</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform">
+                        <i class="ph ph-graduation-cap text-amber-500 text-4xl mb-4 block"></i>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">PGDEM</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Indian Institute of Export Management</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-white dark:bg-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 hover:-translate-y-1 transition-transform">
+                        <i class="ph ph-graduation-cap text-amber-500 text-4xl mb-4 block"></i>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white">BBA</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-2">Karnatak University</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section id="impact" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900 text-white">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-slate-100 via-slate-900 to-slate-900"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Startup & Innovation Impact</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 mb-16">
+                <!-- Impact Cards -->
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-center hover:bg-white/10 transition-colors group" style="transition-delay: 0ms">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-amber-400 mb-2 group-hover:scale-110 transition-transform">₹11.94 Cr</div>
+                    <h4 class="text-lg font-bold text-white">Funding Enabled</h4>
+                    <p class="text-sm text-slate-400 mt-1">For 106 Agri Startups</p>
+                </div>
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-center hover:bg-white/10 transition-colors group" style="transition-delay: 100ms">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-amber-400 mb-2 group-hover:scale-110 transition-transform">106+</div>
+                    <h4 class="text-lg font-bold text-white">Startups Supported</h4>
+                    <p class="text-sm text-slate-400 mt-1">Mentorship & Growth</p>
+                </div>
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-center hover:bg-white/10 transition-colors group" style="transition-delay: 200ms">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-amber-400 mb-2 group-hover:scale-110 transition-transform">₹1.35 Cr</div>
+                    <h4 class="text-lg font-bold text-white">Accelerator Fund</h4>
+                    <p class="text-sm text-slate-400 mt-1">Sanctioned by KDEM</p>
+                </div>
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 text-center hover:bg-white/10 transition-colors group" style="transition-delay: 300ms">
+                    <div class="text-4xl lg:text-5xl font-extrabold text-amber-400 mb-2 group-hover:scale-110 transition-transform">28</div>
+                    <h4 class="text-lg font-bold text-white">Student Projects</h4>
+                    <p class="text-sm text-slate-400 mt-1">Funded via NAIN (₹80L)</p>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 h-full">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-6 flex items-center">
+                        <i class="ph ph-lightbulb mr-3 text-amber-400"></i> Key Milestones
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Instrumental in getting 28 student projects funded of Gogte Institute of Technology, Belagavi through NAIN Centre (₹80 Lakhs).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Instrumental in getting KCTU TBI to Gogte Institute of Technology, Belagavi (₹25 Lakhs).</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Instrumental in getting funds to 106 Agri Startups through KRISHIK Agri Business Incubator (₹1194.67 Lakhs).</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fade-in-section bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 h-full" style="transition-delay: 200ms">
+                    <h3 class="text-2xl font-serif font-bold text-white mb-6 flex items-center">
+                        <i class="ph ph-users mr-3 text-amber-400"></i> Strategic Initiatives
+                    </h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Incorporated a Section 8 company at the University of Agricultural Sciences, Dharwad.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Mentoring and Hand Holding of Startups for marketing, financial assistance, DPR and business plan.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ph ph-caret-right text-amber-400 mr-2 shrink-0 mt-1 text-lg"></i>
+                            <span class="text-slate-300">Instrumental in proposing KAN (Karnataka Accelerator Network) under KDEM, GoK and sanctioned a project worth ₹1.35 Crores.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE TIMELINE -->
+    <section id="experience" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">Work Experience</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">A journey of continuous growth and leadership across academia and corporate sectors.</p>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="mt-16 relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-slate-200 dark:bg-slate-800 rounded-full"></div>
+                
+                <div class="space-y-12">
+                    <!-- Exp Item 1 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full md:flex-row-reverse">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">September 2024 - Present</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Professor Dept. of MBA & Director, <a href="https://klectie.com/" target="_blank" rel="noreferrer" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors underline decoration-slate-300 dark:decoration-slate-600 hover:decoration-amber-500 underline-offset-4">CTIE</a></h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1"><a href="https://kletech.ac.in/" target="_blank" rel="noreferrer" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors underline decoration-slate-300 dark:decoration-slate-600 hover:decoration-amber-500 underline-offset-4">KLE Technological University, Hubballi</a></p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Leading the <a href="https://klectie.com/" target="_blank" rel="noreferrer" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors underline decoration-slate-300 dark:decoration-slate-600 hover:decoration-amber-500 underline-offset-2">Center for Technology Innovation & Entrepreneurship</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Exp Item 2 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full" style="transition-delay: 200ms">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">October 2019 - August 2024</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Chief Operating Officer</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">KRISHIK ABI, RKVY RAFTAAR, MOA & FW, GoI, UASD</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Spearheaded operations, mentoring 106 startups and enabling massive funding ecosystems.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 3 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full md:flex-row-reverse">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">July 2019 - October 2019</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Manager - Marketing & Communications</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">KRISHIK ABI, UASD</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Drove marketing initiatives and communications for the incubator.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 4 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full" style="transition-delay: 200ms">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">December 2016 - July 2019</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">PRO & Asst. Professor Dept of MBA</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1"><a href="https://git.edu/" target="_blank" rel="noreferrer" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors underline decoration-slate-300 dark:decoration-slate-600 hover:decoration-amber-500 underline-offset-4">KLS Gogte Institute of Technology</a></p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Managed public relations alongside academic responsibilities.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 5 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full md:flex-row-reverse">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">December 2016 - July 2019</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Incharge - Training & Development Officer</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1"><a href="https://git.edu/" target="_blank" rel="noreferrer" class="hover:text-amber-600 dark:hover:text-amber-400 transition-colors underline decoration-slate-300 dark:decoration-slate-600 hover:decoration-amber-500 underline-offset-4">KLS Gogte Institute of Technology</a></p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Led comprehensive training programs for students and staff.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 6 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full" style="transition-delay: 200ms">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">August 2015 - May 2019</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Regional Coordinator, NAIN</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">Dept of IT, BT and S&T, GoK at KLS Gogte</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Coordinated the New Age Incubation Network, funding 28 student projects.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 7 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full md:flex-row-reverse">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">July 2013 - July 2015</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Lecturer - Management</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">KLE College of Business Administration</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Delivered management curriculum and mentored students.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 8 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full" style="transition-delay: 200ms">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">March 2012 - September 2012</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Officer - Training & Development</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">Aditya Birla Retail Limited</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Executed corporate training initiatives.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 9 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full md:flex-row-reverse">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">July 2011 - March 2012</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Executive - Training & Development</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">Centum Learning Limited, Bharti Wall Mart Enterprise</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Corporate training and workforce development.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Exp Item 10 -->
+                    <div class="fade-in-section relative flex items-center justify-between md:justify-normal w-full" style="transition-delay: 200ms">
+                        <div class="absolute left-[26px] md:left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full bg-amber-500 border-4 border-slate-50 dark:border-slate-900 z-10"></div>
+                        <div class="w-full pl-14 md:pl-0 md:w-[45%]">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 relative hover:border-amber-500/50 transition-colors">
+                                <span class="inline-block py-1 px-3 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 text-xs font-bold mb-3">February 2006 - January 2008</span>
+                                <h4 class="text-xl font-bold text-slate-900 dark:text-white">Training Officer (Part Time)</h4>
+                                <p class="text-md font-medium text-slate-600 dark:text-slate-400 mt-1">Gambit Training Institute</p>
+                                <p class="text-sm text-slate-500 dark:text-slate-500 mt-3">Early career foundational training role.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH & PUBLICATIONS -->
+    <section id="research" class="py-20 bg-white dark:bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">Research & Publications</h2>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="mt-12 flex flex-wrap justify-center gap-3 md:gap-4 mb-8">
+                <button onclick="showTab('journals')" id="btn-journals" class="tab-btn px-6 py-3 rounded-full text-sm font-semibold transition-all w-full sm:w-auto bg-amber-500 text-white shadow-lg shadow-amber-500/30">
+                    Referred Journals
+                </button>
+                <button onclick="showTab('conferences')" id="btn-conferences" class="tab-btn px-6 py-3 rounded-full text-sm font-semibold transition-all w-full sm:w-auto bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                    Conferences
+                </button>
+                <button onclick="showTab('kannada')" id="btn-kannada" class="tab-btn px-6 py-3 rounded-full text-sm font-semibold transition-all w-full sm:w-auto bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
+                    Kannada Journals
+                </button>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-900 p-6 md:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 min-h-[400px]">
+                
+                <!-- Journals Tab Content -->
+                <div id="tab-journals" class="tab-content grid gap-4">
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            GIRIJA YABANNAVAR AND VINAYAK S. HOSAMANI <span class="font-semibold text-slate-900 dark:text-white">2013</span>, <span class="font-semibold text-slate-900 dark:text-white">Growth and Direction of Indian Basmati Rice Export under WTO Era</span>, IRJCBS, 2(6):20-24
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2013</span>, <span class="font-semibold text-slate-900 dark:text-white">Green Marketing an Overview</span>, International Conference on Sustainable Growth, 2(6), ISSN: 22779310
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            GIRIJA YABANNAVAR AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2013</span>, <span class="font-semibold text-slate-900 dark:text-white">Roles and Responsibilities of a Teacher as Counselor and Mentor</span>, 2nd intl conf on managing human resources. ISBN: 978-81-922146-5-8
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            KISHORE L AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2014</span>, <span class="font-semibold text-slate-900 dark:text-white">A Retrospection of Social Marketing Concept & Strategic Due Diligence for Sustainable Energy Sector</span>, IRJCBS 2(11):32-34
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            VINAYAK S. HOSAMANI, FARZANA M PATHAN AND NEHA KUPSAD, <span class="font-semibold text-slate-900 dark:text-white">2015</span>, <span class="font-semibold text-slate-900 dark:text-white">Management Education in India: Issues and Concerns</span>, PRERANA, 67-71
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            THYGARAJA C. M AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2017</span>, <span class="font-semibold text-slate-900 dark:text-white">Export of Spices: A Study on Competitive Export Scenario of Spices</span>, IJRCMEAS, 1:119-131
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            VINAYAK S. HOSAMANI AND THYGARAJA C. M, <span class="font-semibold text-slate-900 dark:text-white">2017</span>, <span class="font-semibold text-slate-900 dark:text-white">Challenges of Marketing Indian Spices in India</span>, IJCBM, 10(2):99-103
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            VINAYAK S. HOSAMANI AND THYGARAJA C. M, <span class="font-semibold text-slate-900 dark:text-white">2018</span>, <span class="font-semibold text-slate-900 dark:text-white">Price Forecasting & Integration of Domestic Markets of Spices In India An Econometric Analysis</span>, IJRTI, 3(10):94-103
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            VINAYAK S. HOSAMANI AND THYGARAJA C. M, <span class="font-semibold text-slate-900 dark:text-white">2018</span>, <span class="font-semibold text-slate-900 dark:text-white">Direction of Trade and Export Competitiveness of Indian Spices in Global Market</span>, JETIR, 5(10):311-323
+                        </p>
+                    </div>
+                    <div class="fade-in-section flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            SURYAKUMAR N KHANAI AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2019</span>, <span class="font-semibold text-slate-900 dark:text-white">Growth and Challenges of Dairy Industry in India</span>, Pragati Journal of Indian Economy, Vol 6, 104-113
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Conferences Tab Content -->
+                <div id="tab-conferences" class="tab-content hidden grid gap-4">
+                    <div class="flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            KISHORE L AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2014</span>, <span class="font-semibold text-slate-900 dark:text-white">A Retrospection of Social Marketing Concept... Presented in Ist International INAAR Convention.</span>
+                        </p>
+                    </div>
+                    <div class="flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            SURYAKUMAR N KHANAI AND VINAYAK S.HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2021</span>, <span class="font-semibold text-slate-900 dark:text-white">Quality Management Standards and Performance of MSMEs... Presented at EDII, Ahmadabad.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kannada Tab Content -->
+                <div id="tab-kannada" class="tab-content hidden grid gap-4">
+                    <div class="flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            SHIVANAND HOSAMANI, JYOTI JODALLI AND VINAYAK S. HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2013</span>, <span class="font-semibold text-slate-900 dark:text-white">Export Procedures of Mango</span>, Krishi Pete, 39 (6):24-27
+                        </p>
+                    </div>
+                    <div class="flex items-start p-4 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-amber-500/30 transition-colors">
+                        <i class="ph ph-book-open text-amber-500 mt-1 shrink-0 mr-4 text-2xl"></i>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                            SHIVANAND HOSAMANI AND VINAYAK HOSAMANI, <span class="font-semibold text-slate-900 dark:text-white">2014</span>, <span class="font-semibold text-slate-900 dark:text-white">Fruits and Vegetables Export-Challenges</span>, Yojana, 39-44
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SPEECHES & GALLERY SECTION -->
+    <section id="gallery" class="py-20 bg-slate-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">Speeches & Talks</h2>
+                <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Capturing moments of leadership, inspiration, and knowledge sharing.</p>
+                <div class="w-24 h-1 bg-amber-500 mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                <div class="fade-in-section group relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 h-64 md:h-80 bg-slate-200 dark:bg-slate-800">
+                    <img src="WhatsApp Image 2026-03-18 at 10.04.24 AM (1).jpeg" alt="Keynote Address on Startup Ecosystems" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 md:p-8 w-full">
+                            <div class="w-10 h-1 bg-amber-500 rounded-full mb-3 transition-all duration-300 group-hover:w-16"></div>
+                            <h4 class="text-white text-xl font-bold">Keynote Address on Startup Ecosystems</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in-section group relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 h-64 md:h-80 bg-slate-200 dark:bg-slate-800" style="transition-delay: 100ms">
+                    <img src="WhatsApp Image 2026-03-18 at 10.04.25 AM.jpeg" alt="Addressing Agri-Tech Entrepreneurs" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 md:p-8 w-full">
+                            <div class="w-10 h-1 bg-amber-500 rounded-full mb-3 transition-all duration-300 group-hover:w-16"></div>
+                            <h4 class="text-white text-xl font-bold">Addressing Agri-Tech Entrepreneurs</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in-section group relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 h-64 md:h-80 bg-slate-200 dark:bg-slate-800">
+                    <img src="WhatsApp Image 2026-03-18 at 10.04.22 AM.jpeg" alt="AGRIVISION National Youth Conference" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 md:p-8 w-full">
+                            <div class="w-10 h-1 bg-amber-500 rounded-full mb-3 transition-all duration-300 group-hover:w-16"></div>
+                            <h4 class="text-white text-xl font-bold">AGRIVISION National Youth Conference</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="fade-in-section group relative rounded-3xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800 h-64 md:h-80 bg-slate-200 dark:bg-slate-800" style="transition-delay: 100ms">
+                    <img src="WhatsApp Image 2026-03-18 at 10.04.32 AM.jpeg" alt="Panel Discussion on Academic Excellence" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                        <div class="p-6 md:p-8 w-full">
+                            <div class="w-10 h-1 bg-amber-500 rounded-full mb-3 transition-all duration-300 group-hover:w-16"></div>
+                            <h4 class="text-white text-xl font-bold">Panel Discussion on Academic Excellence</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+        
+        </div>
+    </section>
+
+    <!-- EVENTS, AWARDS & PROJECTS -->
+    <section class="py-20 bg-white dark:bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-3 gap-12">
+                
+                <!-- Awards & Projects Column -->
+                <div class="lg:col-span-1 space-y-8">
+                    <h3 class="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 flex items-center">
+                        <i class="ph ph-medal mr-3 text-amber-500 text-3xl"></i> Awards
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="fade-in-section bg-gradient-to-br from-amber-500 to-amber-600 p-[1px] rounded-2xl shadow-lg">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl h-full">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Global Teacher Award</h4>
+                                    <span class="text-xs font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-md">2018</span>
+                                </div>
+                                <p class="text-sm text-slate-500">AKS, Delhi</p>
+                            </div>
+                        </div>
+                        <div class="fade-in-section bg-gradient-to-br from-amber-500 to-amber-600 p-[1px] rounded-2xl shadow-lg" style="transition-delay: 100ms">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl h-full">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Best Kannada Article Publication Award</h4>
+                                    <span class="text-xs font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-md">2013</span>
+                                </div>
+                                <p class="text-sm text-slate-500">Karnataka State Agricultural Marketing Board</p>
+                            </div>
+                        </div>
+                        <div class="fade-in-section bg-gradient-to-br from-amber-500 to-amber-600 p-[1px] rounded-2xl shadow-lg" style="transition-delay: 200ms">
+                            <div class="bg-white dark:bg-slate-800 p-6 rounded-2xl h-full">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Best Summer Project Award</h4>
+                                    <span class="text-xs font-bold bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 px-2 py-1 rounded-md">2011</span>
+                                </div>
+                                <p class="text-sm text-slate-500">VTU at Horizon College of Technology</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 mt-12 flex items-center">
+                        <i class="ph ph-suitcase mr-3 text-amber-500 text-3xl"></i> Projects
+                    </h3>
+                    <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-800">
+                        <ul class="space-y-4">
+                            <li class="flex items-start text-sm text-slate-600 dark:text-slate-300">
+                                <i class="ph ph-target text-amber-500 mr-2 shrink-0 mt-0.5 text-lg"></i>
+                                Trainer at Gambit Call Center and Training Institute (Infosys project), Hubballi (2 years).
+                            </li>
+                            <li class="flex items-start text-sm text-slate-600 dark:text-slate-300">
+                                <i class="ph ph-target text-amber-500 mr-2 shrink-0 mt-0.5 text-lg"></i>
+                                Live training projects handled for sify and i-way.
+                            </li>
+                            <li class="flex items-start text-sm text-slate-600 dark:text-slate-300">
+                                <i class="ph ph-target text-amber-500 mr-2 shrink-0 mt-0.5 text-lg"></i>
+                                Study on consumer behavior and competitive analysis of carbonated drinks at Nector Beverages Pvt Ltd (Pepsico, Dharwad).
+                            </li>
+                            <li class="flex items-start text-sm text-slate-600 dark:text-slate-300">
+                                <i class="ph ph-target text-amber-500 mr-2 shrink-0 mt-0.5 text-lg"></i>
+                                Study on consumer behavior on non-carbonated drinks and trade analysis at TATA Global Beverages Ltd, Bengaluru.
+                            </li>
+                            <li class="flex items-start text-sm text-slate-600 dark:text-slate-300">
+                                <i class="ph ph-target text-amber-500 mr-2 shrink-0 mt-0.5 text-lg"></i>
+                                Sponsored project by NABARD on self help groups of north Karnataka.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Events Column -->
+                <div class="lg:col-span-2">
+                    <h3 class="text-3xl font-serif font-bold text-slate-900 dark:text-white mb-6 flex items-center">
+                        <i class="ph ph-calendar mr-3 text-amber-500 text-3xl"></i> Events Organised
+                    </h3>
+                    
+                    <div class="bg-slate-50 dark:bg-slate-900 rounded-3xl p-6 md:p-8 shadow-inner border border-slate-200 dark:border-slate-800 h-[600px] overflow-y-auto custom-scrollbar">
+                        <div class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-3 md:ml-4 space-y-8">
+                            
+                            <!-- Static Event List Extracted from React -->
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organised Elvic Student program for Students of KLE Technological University, Hubballi (Sept 2024).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising member of AGRIVISION National Youth Conference on Agriculture at UAS, Dharwad (Mar 2023).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising member of Tech Bharat 2022 (Agri/Food Tech Startups) at GKVK, Bengaluru (Mar 2022).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising member of Tech Bharat 2022 (Agri/Food Tech Startups) at VTU, Belagavi (Jan 2022).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising member of Krishi Mela 2020 at UAS, Dharwad.</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising member for KLS Platinum Jubilee Celebration (Visit of Hon'ble President of India) (2018).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organised Second Graduation Day for KLS Gogte Institute of Technology (2018).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organised First Graduation Day for KLS Gogte Institute of Technology (2017).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organised Hackathon 15 (State level Boot camp) at GIT with IT, BT and S&T, GoK (2015).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organised Pre Hackathon 15 (Regional level Boot camp) at GIT (2015).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising secretary for 'Kala Belaku' reality show for Karnataka film industry (2015).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising coordinator for 'From Mug to Mike' state level competition (2015).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising secretary for RPM-2015 an exclusive Automobile Exhibition at Hubballi (2015).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising secretary for National level conference on 'Current Issues of Wine Industries' (2014).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organising Assistant for INCOMEX, Chamber of Commerce & Industries, Hubballi (2012).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Organiser National Level conference on 'International Trade in Goods and Services' at NMIT (2010).</p>
+                            </div>
+                            <div class="relative pl-6 md:pl-8">
+                                <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-50 dark:bg-slate-900 border-2 border-amber-500"></div>
+                                <p class="text-slate-700 dark:text-slate-300 font-medium">Assistant co-coordinator for management fest (Adhiveshana) by NMIT (2010).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT -->
+    <footer id="contact" class="relative bg-slate-900 text-white pt-20 pb-10 overflow-hidden">
+        <!-- Background glow -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-500/20 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 lg:gap-24 mb-16 border-b border-white/10 pb-16">
+                
+                <div>
+                    <h2 class="text-4xl font-serif font-bold mb-6">Let's Connect</h2>
+                    <p class="text-slate-400 mb-8 max-w-md">
+                        Open to discussing administrative, training, marketing, entrepreneurial, and corporate responsibility roles, as well as collaborative projects.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <a href="mailto:vinayak.hosamani@kletch.ac.in" class="flex items-center space-x-4 text-slate-300 hover:text-amber-400 transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-amber-400/10">
+                                <i class="ph ph-envelope text-xl"></i>
+                            </div>
+                            <span class="text-lg">vinayak.hosamani@kletch.ac.in</span>
+                        </a>
+                        
+                        <a href="https://wa.me/919916911656" target="_blank" rel="noreferrer" class="flex items-center space-x-4 text-slate-300 hover:text-amber-400 transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-amber-400/10">
+                                <i class="ph ph-phone text-xl"></i>
+                            </div>
+                            <span class="text-lg">+91 99169 11656</span>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/dr-vinayak-hosamani-56242337/" target="_blank" rel="noreferrer" class="flex items-center space-x-4 text-slate-300 hover:text-[#0077b5] transition-colors group">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#0077b5]/20 group-hover:text-[#0077b5]">
+                                <i class="ph ph-linkedin-logo text-xl"></i>
+                            </div>
+                            <span class="text-lg">Connect on LinkedIn</span>
+                        </a>
+                        
+                        <div class="flex items-center space-x-4 text-slate-300 group pt-2">
+                            <div class="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+                                <i class="ph ph-map-pin text-xl"></i>
+                            </div>
+                            <span class="text-lg max-w-xs">KLE Technological University, Vidyanagar, Hubballi-580031</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
+                    <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Messaging functionality is visually represented here. Connect via email or WhatsApp above.');">
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-1">Name</label>
+                            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Name" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-1">Email</label>
+                            <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Email" />
+                        </div>
+                        <div>
+                            <label class="block text-sm text-slate-400 mb-1">Message</label>
+                            <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors resize-none" placeholder="How can we collaborate?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl transition-colors flex items-center justify-center space-x-2">
+                            <span>Send Message</span>
+                            <i class="ph ph-arrow-up-right text-lg"></i>
+                        </button>
+                    </form>
+                </div>
+                
+            </div>
+            
+            <div class="flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
+                <p>&copy; <span id="current-year"></span> Dr. Vinayak S. Hosamani. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="https://www.kletech.ac.in" target="_blank" rel="noreferrer" class="hover:text-amber-400 transition-colors">
+                        www.kletech.ac.in
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVITY LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            // === THEME TOGGLE (Dark/Light Mode) ===
+            const html = document.documentElement;
+            const themeToggleDesktop = document.getElementById('theme-toggle');
+            const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+            
+            // Check system preference or localStorage
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+            } else {
+                html.classList.remove('dark');
+            }
+
+            function toggleTheme() {
+                html.classList.toggle('dark');
+                localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+            }
+
+            themeToggleDesktop.addEventListener('click', toggleTheme);
+            themeToggleMobile.addEventListener('click', toggleTheme);
+
+
+            // === MOBILE MENU TOGGLE ===
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('hidden');
+                iconOpen.classList.toggle('hidden');
+                iconClose.classList.toggle('hidden');
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+            // Close menu when a link is clicked
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
+            });
+
+
+            // === TAB NAVIGATION FOR RESEARCH ===
+            window.showTab = function(tabName) {
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+                
+                // Show the selected tab
+                document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+
+                // Reset all button styles
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/30');
+                    btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                });
+
+                // Style active button
+                const activeBtn = document.getElementById(`btn-${tabName}`);
+                activeBtn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                activeBtn.classList.add('bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/30');
+            };
+
+
+            // === SCROLL ANIMATIONS (Intersection Observer) ===
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
