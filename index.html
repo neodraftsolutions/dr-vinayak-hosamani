@@ -830,22 +830,22 @@
                 
                 <div class="bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10">
                     <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
-                    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Messaging functionality is visually represented here. Connect via email or WhatsApp above.');">
+                    <form id="contact-form" class="space-y-4">
                         <div>
                             <label class="block text-sm text-slate-400 mb-1">Name</label>
-                            <input type="text" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Name" />
+                            <input type="text" id="sender-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Name" />
                         </div>
                         <div>
                             <label class="block text-sm text-slate-400 mb-1">Email</label>
-                            <input type="email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Email" />
+                            <input type="email" id="sender-email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors" placeholder="Your Email" />
                         </div>
                         <div>
                             <label class="block text-sm text-slate-400 mb-1">Message</label>
-                            <textarea rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors resize-none" placeholder="How can we collaborate?"></textarea>
+                            <textarea id="sender-message" required rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-400 transition-colors resize-none" placeholder="How can we collaborate?"></textarea>
                         </div>
                         <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-4 rounded-xl transition-colors flex items-center justify-center space-x-2">
                             <span>Send Message</span>
-                            <i class="ph ph-arrow-up-right text-lg"></i>
+                            <i class="ph ph-whatsapp-logo text-xl"></i>
                         </button>
                     </form>
                 </div>
@@ -938,6 +938,24 @@
                 activeBtn.classList.add('bg-amber-500', 'text-white', 'shadow-lg', 'shadow-amber-500/30');
             };
 
+            // === WHATSAPP FORM SUBMISSION ===
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('sender-name').value;
+                    const email = document.getElementById('sender-email').value;
+                    const message = document.getElementById('sender-message').value;
+                    
+                    const phoneNumber = "919916911656"; // Target WhatsApp Number
+                    const whatsappText = `Hello Dr. Vinayak,\n\nI am reaching out from your portfolio website.\n\n*Name:* ${name}\n*Email:* ${email}\n\n*Message:*\n${message}`;
+                    
+                    // Create URL encoding and open WhatsApp
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappText)}`;
+                    window.open(whatsappUrl, '_blank');
+                });
+            }
 
             // === SCROLL ANIMATIONS (Intersection Observer) ===
             const observerOptions = {
